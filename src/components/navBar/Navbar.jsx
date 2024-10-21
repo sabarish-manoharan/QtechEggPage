@@ -8,60 +8,35 @@ import { LuShoppingBag } from "react-icons/lu";
 import { GoHeart } from "react-icons/go";
 
 const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const onToggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  }
   return (
     <>
-      <nav className="bg-white border-gray-200 dark:bg-gray-900">
-        <div className="max-w-screen-xl flex flex-wrap items-center justify-between  py-2 px-2">
+      <header className="mt-2">
+        <nav className="flex justify-between items-center mx-8">
           <div className='max-w-screen-xl flex flex-wrap items-center'>
 
             <img
               src={egglogo}
-              className="h-8 flex items-center space-x-3 rtl:space-x-reverse"
+              className="h-12 flex items-center space-x-3 rtl:space-x-reverse"
               alt="eggspro Logo"
             />
-            <p className="text-xl font-semibold text-yellow-500 mx-2">
+            <p className="text-2xl font-semibold text-yellow-500 mx-4">
               Eggspro
             </p>
           </div>
-          <button
-            onClick={toggleMenu}
-            type="button"
-            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-            aria-controls="navbar-default"
-            aria-expanded={isMenuOpen}
-          >
-            <span className="sr-only">Open main menu</span>
-            <svg
-              className="w-5 h-5 hover:text-red-700"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 17 14"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M1 1h15M1 7h15M1 13h15"
-              />
-            </svg>
-          </button>
           <div
-            className={`${isMenuOpen ? 'block' : 'hidden'
-              } w-full md:flex md:w-auto`}
-            id="navbar-default"
-          >
-            <div className='max-w-screen-xl flex flex-col md:flex-row  items-center justify-center  md:justify-between bg-stone-200 md:bg-inherit'>
+          className={`nav-links  md:static absolute bg-white z-40 md:duration-0 md:min-h-fit min-h-[60vh] top-0 md:w-auto w-full flex items-center px-5 md:translate-x-0 transform ${menuOpen ? "translate-x-96" : "translate-x-full"} ${menuOpen ? "duration-500" : ""} `}
+          
+
               
-              <ul className="font-medium flex flex-col  mx-5 rounded-lg  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
-                <li className='flex items-center  md:border-0 md:hover:text-red-700'>
-                  <RiHomeLine />
+          >
+            <ul className="flex md:flex-row flex-col  md:items-center md:gap-[4vw] gap-8">
+              <li className='flex items-center gap-2'>
+              <RiHomeLine />
                   <a
                     href="#"
                     className="mx-1"
@@ -69,57 +44,74 @@ const Navbar = () => {
                   >
                     Home
                   </a>
-                </li>
-                <li className='flex items-center md:border-0 md:hover:text-red-700'>
-                  <TbEggs />
+              </li>
+              <li className='flex items-center gap-2'>
+              <TbEggs />
                   <a
                     href="#"
                     className="mx-1  "
                   >
                     Products
                   </a>
-                </li>
-                <li className='flex items-center  md:border-0 md:hover:text-red-700'>
-                  <LiaBlogger />
+              </li>
+              <li className='flex items-center md:gap-2'>
+              <LiaBlogger />
                   <a
                     href="#"
                     className="mx-1"
                   >
                     Blog
                   </a>
-                </li>
-                <li className='flex items-center  md:border-0 md:hover:text-red-700'>
-                  <FiPhone />
+              </li>
+              <li className='flex items-center gap-2'>
+              <FiPhone />
                   <a
                     href="#"
                     className="mx-1 "
                   >
                     Contact Us
                   </a>
-                </li>
-              </ul>
-
-
-
-              <ul className="font-medium flex flex-col   md:flex-row gap-4">
-                <li className={`${isMenuOpen ? 'hidden' : 'block'
-              } w-full md:flex md:w-auto`}>
-                  <FiUser />
-                </li>
-                <li className={`${isMenuOpen ? 'hidden' : 'block'
-              } w-full md:flex md:w-auto`}>
-                  <GoHeart />
-                </li>
-                <li className={`${isMenuOpen ? 'block' : 'hidden'
-              } w-full md:flex md:w-auto`}>
-                  <LuShoppingBag />
-                </li>
-              </ul>
-            </div>
+              </li>
+              
+            </ul>
           </div>
-        </div>
+          <div className="flex items-center gap-6">
+            <button className="bg-[#795548] text-white px-5 py-2 rounded-full hover:bg-[#87acec]">
+              LOGIN
+            </button>
+          
+            <ion-icon
+              name={menuOpen ? "close" : "menu"}
+              class="text-3xl cursor-pointer md:hidden z-50"
+              onClick={onToggleMenu}
+            ></ion-icon>
+          </div>
+        </nav>
+      </header>
 
-      </nav>
+    
+           
+
+
+
+
+         {/* <ul className="font-medium flex flex-col   md:flex-row gap-4">
+            <li className={`${isMenuOpen ? 'hidden' : 'block'
+              } w-full md:flex md:w-auto`}>
+              <FiUser />
+            </li>
+            <li className={`${isMenuOpen ? 'hidden' : 'block'
+              } w-full md:flex md:w-auto`}>
+              <GoHeart />
+            </li>
+            <li className={`${isMenuOpen ? 'block' : 'hidden'
+              } w-full md:flex md:w-auto`}>
+              <LuShoppingBag />
+            </li>
+          </ul>  */}
+            
+      
+
     </>
   )
 }
